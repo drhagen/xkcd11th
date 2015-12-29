@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: David Hagen
+@author: David R Hagen
 @license: MIT
 """
 
