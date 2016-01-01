@@ -140,8 +140,7 @@ bad_XXth_days.remove('11th') # the 11th is not bad
 # Bad XXth dates
 bad_XXth_days_of_year = [months[i_month] + ' ' + bad_XXth_days[i_day] 
                          for i_month in range(12) 
-                         for i_day in range(len(bad_XXth_days)) 
-                         if i_day < days_in_months[i_month]]
+                         for i_day in range(len(bad_XXth_days))]
 n_bad_dates = len(bad_XXth_days_of_year)
 
 # Bad nth dates
@@ -155,5 +154,4 @@ bad_XX_days.remove('it') # Get rid of it because it pollutes the data
 
 bad_XX_days_of_year = [months[i_month] + ' ' + bad_XX_days[i_day] 
                        for i_month in range(12) 
-                       for i_day in range(len(bad_XX_days)) 
-                       if i_day < days_in_months[i_month]]
+                       for i_day in range(len(bad_XX_days))]
