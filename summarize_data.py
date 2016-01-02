@@ -6,7 +6,7 @@
 
 from scipy.stats import norm
 
-from general_setup import smooth_data,median_over_months,sum_over_patterns,plot_me
+from general_setup import smooth_data,median_over_months,sum_over_patterns,filter_for_specific_day,plot_me
 from load_data import good_XXth_data,bad_XXth_data,bad_nth_data
 
 # Good medians
@@ -14,7 +14,7 @@ good_XXth_medians = median_over_months(good_XXth_data)
 good_XXth_medians_smooth = smooth_data(good_XXth_medians, 5)
 
 # The day of interest
-only_11th = good_XXth_data[['year'] + [col for col in good_XXth_data.columns[1:] if col.split(' ')[1] == '11th']]
+only_11th = filter_for_specific_day(good_XXth_data, '11th')
 only_11th_medians_smooth = good_XXth_medians_smooth[['year','11th']]
 
 # Bad sums

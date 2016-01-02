@@ -44,6 +44,10 @@ def fetch_all_data(items):
     
     return data
 
+# Joins data by year
+def merge_data(*each_data):
+    return reduce(lambda left, right: left.merge(right, on='year'), each_data)
+    
 # General smoothing function
 def smooth_data(raw, smoothing=3):
     columns = [col for col in raw.columns if col != 'year']
@@ -92,9 +96,13 @@ def sum_over_patterns(raw, new_name=None):
          
      return sums
 
+# Extract only columns of particular days
+def filter_for_specific_day(data, day):
+    return data[['year'] + [col for col in data.columns[1:] if col.split(' ')[1] == day]]
+
 def plot_me(*each_data, years=(1800,2008)):
-    each_data = [data_i[years[0]-1800:years[1]-1800+1] for data_i in each_data]
-    data = reduce(lambda left, right: left.merge(right, on='year'), each_data)
+    data = merge_data(*each_data)
+    data = data[years[0]-1800:years[1]-1800+1]
     ax = data.plot(x='year', legend=False, figsize=(10,6), color='k')
     ax.ticklabel_format(useOffset=False)
     ax.yaxis.set_ticklabels([])
@@ -155,3 +163,9 @@ bad_XX_days.remove('it') # Get rid of it because it pollutes the data
 bad_XX_days_of_year = [months[i_month] + ' ' + bad_XX_days[i_day] 
                        for i_month in range(12) 
                        for i_day in range(len(bad_XX_days))]
+
+# Old-style 2nd, 3rd, 22nd, 23rd
+old_style_days = ['2d', '3d', '22d', '23d']
+old_style_days_of_year = [months[i_month] + ' ' + old_style_days[i_day] 
+                       for i_month in range(12) 
+                       for i_day in range(len(old_style_days))]

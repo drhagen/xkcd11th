@@ -21,3 +21,6 @@ bad_nth_data = DataFrame.from_csv('bad_nth_data.csv', index_col=None)
 
 # Load bad XX data
 bad_XX_data = DataFrame.from_csv('bad_XX_data.csv', index_col=None)
+
+# Load old-style data
+old_style_data = DataFrame.from_csv('old_style_data.csv', index_col=None)
